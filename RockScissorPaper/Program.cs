@@ -109,6 +109,8 @@ namespace RockScissorPaper
         {
             Console.WriteLine("Example of correct input of parameters:");
             Console.WriteLine("RockScissorPaper.exe rock paper scissors");
+            Console.WriteLine("Press any key...");
+            Console.ReadKey();
         }
 
         private static int GenerateComputerMove() => RandomNumberGenerator.GetInt32(AvailableMoves.Count) + 1;
