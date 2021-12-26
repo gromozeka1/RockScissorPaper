@@ -1,30 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using System.Linq;
+using System.Security.Cryptography;
 
 namespace RockScissorPaper
 {
+    /// <summary>
+    /// Program class.
+    /// </summary>
     public static class Program
     {
-        private static readonly Dictionary<int, string> availableMoves = new ();
+        private const string HelpSelection = "?";
+        private const int ExitSelection = 0;
+
+        private static readonly Dictionary<int, string> AvailableMoves = new ();
         private static int totalMoves;
         private static bool isRunning = true;
-        private static readonly string helpSelection = "?";
-        private static readonly int exitSelection = 0;
 
-
-        static void Main(string[] args)
+        /// <summary>
+        /// Main method.
+        /// </summary>
+        /// <param name="args">Arguments.</param>
+        public static void Main(string[] args)
         {
             if (!ValidateParameters(args))
             {
-                Console.WriteLine("Example of correct input of parameters:");
-                Console.WriteLine("RockScissorPaper.exe rock paper scissors");
+                ShowExampleInput();
                 return;
             }
 
             InitDictionary(args);
-            Rules.FillTable(availableMoves);
+            Rules.FillTable(AvailableMoves);
 
             do
             {
@@ -37,7 +43,7 @@ namespace RockScissorPaper
                 Console.Write("Enter your move: ");
                 string userChoice = Console.ReadLine();
 
-                if (userChoice.Equals(helpSelection, StringComparison.InvariantCulture))
+                if (userChoice.Equals(HelpSelection, StringComparison.Ordinal))
                 {
                     HelpMe();
                     continue;
@@ -49,7 +55,7 @@ namespace RockScissorPaper
                     continue;
                 }
 
-                if (userMove == exitSelection)
+                if (userMove == ExitSelection)
                 {
                     Exit();
                     continue;
@@ -72,7 +78,7 @@ namespace RockScissorPaper
             var duplicateValues = parameters
                 .GroupBy(e => e)
                 .Where(e => e.Count() > 1).ToArray();
-            
+
             if (duplicateValues.Length > 0)
             {
                 Console.WriteLine("There are duplicate values of parameters:");
@@ -80,6 +86,7 @@ namespace RockScissorPaper
                 {
                     Console.WriteLine(values.Key);
                 }
+
                 return false;
             }
 
@@ -89,20 +96,27 @@ namespace RockScissorPaper
         private static void ShowMenu()
         {
             Console.WriteLine("Available moves:");
-            foreach (var item in availableMoves)
+            foreach (var item in AvailableMoves)
             {
                 Console.WriteLine($"{item.Key} - {item.Value}");
             }
-            Console.WriteLine($"{exitSelection} - exit");
-            Console.WriteLine($"{helpSelection} - help");
+
+            Console.WriteLine($"{ExitSelection} - exit");
+            Console.WriteLine($"{HelpSelection} - help");
         }
 
-        private static int GenerateComputerMove() => RandomNumberGenerator.GetInt32(availableMoves.Count) + 1;
+        private static void ShowExampleInput()
+        {
+            Console.WriteLine("Example of correct input of parameters:");
+            Console.WriteLine("RockScissorPaper.exe rock paper scissors");
+        }
+
+        private static int GenerateComputerMove() => RandomNumberGenerator.GetInt32(AvailableMoves.Count) + 1;
 
         private static void ShowResult(int move1, int move2)
         {
-            Console.WriteLine($"Your move: {availableMoves[move1]}");
-            Console.WriteLine($"Computer move: {availableMoves[move2]}");
+            Console.WriteLine($"Your move: {AvailableMoves[move1]}");
+            Console.WriteLine($"Computer move: {AvailableMoves[move2]}");
 
             string message = Rules.GetWinner(move1, move2) switch
             {
@@ -113,8 +127,6 @@ namespace RockScissorPaper
             };
 
             Console.WriteLine(message);
-
-
         }
 
         private static void InitDictionary(string[] moves)
@@ -123,11 +135,11 @@ namespace RockScissorPaper
 
             foreach (var move in moves)
             {
-                availableMoves.Add(counter, move);
+                AvailableMoves.Add(counter, move);
                 counter++;
             }
 
-            totalMoves = availableMoves.Count;
+            totalMoves = AvailableMoves.Count;
         }
 
         private static void HelpMe()

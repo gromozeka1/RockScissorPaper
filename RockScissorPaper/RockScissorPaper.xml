@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RockScissorPaper</name>
+    </assembly>
+    <members>
+        <member name="T:RockScissorPaper.Help">
+            <summary>
+            Help class.
+            </summary>
+        </member>
+        <member name="M:RockScissorPaper.Help.ShowTable">
+            <summary>
+            ShowTable method.
+            </summary>
+        </member>
+        <member name="T:RockScissorPaper.HmacGenerator">
+            <summary>
+            HmacGenerator class.
+            </summary>
+        </member>
+        <member name="P:RockScissorPaper.HmacGenerator.Key">
+            <summary>
+            Gets a key value.
+            </summary>
+        </member>
+        <member name="M:RockScissorPaper.HmacGenerator.GenerateHmac(System.Int32)">
+            <summary>
+            GenerateHmac method.
+            </summary>
+            <param name="move">Move.</param>
+            <returns>String representation of HMAC.</returns>
+        </member>
+        <member name="T:RockScissorPaper.Program">
+            <summary>
+            Program class.
+            </summary>
+        </member>
+        <member name="M:RockScissorPaper.Program.Main(System.String[])">
+            <summary>
+            Main method.
+            </summary>
+            <param name="args">Arguments.</param>
+        </member>
+        <member name="T:RockScissorPaper.Rules">
+            <summary>
+            Rules class.
+            </summary>
+        </member>
+        <member name="P:RockScissorPaper.Rules.Table">
+            <summary>
+            Gets or sets a table.
+            </summary>
+        </member>
+        <member name="M:RockScissorPaper.Rules.FillTable(System.Collections.Generic.Dictionary{System.Int32,System.String})">
+            <summary>
+            Fill table method.
+            </summary>
+            <param name="moves">Available moves.</param>
+        </member>
+        <member name="M:RockScissorPaper.Rules.GetWinner(System.Int32,System.Int32)">
+            <summary>
+            GetWinner method.
+            </summary>
+            <param name="player1Move">Player1 move.</param>
+            <param name="player2Move">Player2 move.</param>
+            <returns>If draw return 0, if player1 wins - 1, otherwise - 2.</returns>
+        </member>
+    </members>
+</doc>

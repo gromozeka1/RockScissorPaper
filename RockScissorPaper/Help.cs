@@ -3,8 +3,14 @@ using ConsoleTables;
 
 namespace RockScissorPaper
 {
-    static class Help
+    /// <summary>
+    /// Help class.
+    /// </summary>
+    internal static class Help
     {
+        /// <summary>
+        /// ShowTable method.
+        /// </summary>
         public static void ShowTable()
         {
             var consoleTable = new ConsoleTable(Rules.Table[0]);

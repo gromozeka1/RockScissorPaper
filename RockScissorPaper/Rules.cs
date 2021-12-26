@@ -3,14 +3,24 @@ using System.Collections.Generic;
 
 namespace RockScissorPaper
 {
-    static class Rules
+    /// <summary>
+    /// Rules class.
+    /// </summary>
+    internal static class Rules
     {
         private const string DrawText = "Draw";
         private const string WinText = "Win";
         private const string LoseText = "Lose";
 
+        /// <summary>
+        /// Gets or sets a table.
+        /// </summary>
         public static string[][] Table { get; set; }
 
+        /// <summary>
+        /// Fill table method.
+        /// </summary>
+        /// <param name="moves">Available moves.</param>
         public static void FillTable(Dictionary<int, string> moves)
         {
             InitTable(moves);
@@ -30,6 +40,12 @@ namespace RockScissorPaper
             }
         }
 
+        /// <summary>
+        /// GetWinner method.
+        /// </summary>
+        /// <param name="player1Move">Player1 move.</param>
+        /// <param name="player2Move">Player2 move.</param>
+        /// <returns>If draw return 0, if player1 wins - 1, otherwise - 2.</returns>
         public static int GetWinner(int player1Move, int player2Move)
         {
             if (player1Move == player2Move)
